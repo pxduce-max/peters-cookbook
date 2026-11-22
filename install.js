@@ -21,7 +21,14 @@ window.addEventListener('appinstalled', () => {
 
 if ('serviceWorker' in navigator && window.isSecureContext) {
   offlineStatus.textContent = 'Preparing offline recipes…';
-  navigator.serviceWorker.register('./sw.js').then(async registration => {
+  let controller = navigator.serviceWorker.controller;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (controller && controller !== navigator.serviceWorker.controller) {
+      location.reload();
+    }
+    controller = navigator.serviceWorker.controller;
+  });
+  navigator.serviceWorker.register('./sw.js', {updateViaCache: 'none'}).then(async registration => {
     await navigator.serviceWorker.ready;
     offlineStatus.textContent = 'Recipes and PDFs ready offline';
     if (registration.waiting) {

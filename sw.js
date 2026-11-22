@@ -1,13 +1,13 @@
-const CACHE_NAME = 'peters-cookbook-v3';
+const CACHE_NAME = 'peters-cookbook-v4';
 const PRECACHE_URLS = [
   "./",
-  "./app.js",
-  "./shopping.js",
+  "./app.js?v=4",
+  "./shopping.js?v=4",
   "./icons/icon-180.png",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
   "./index.html",
-  "./install.js",
+  "./install.js?v=4",
   "./manifest.webmanifest",
   "./pdfs/Creamy_Peanut_Udon_with_Sticky_Tempeh.pdf",
   "./pdfs/Creamy_Swedish_Saffron_Fish_Soup.pdf",
@@ -40,7 +40,10 @@ const SCOPE_URL = new URL('./', self.location.href);
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE_NAME);
-    await cache.addAll(PRECACHE_URLS);
+    await cache.addAll(PRECACHE_URLS.map(path => new Request(
+      new URL(path, SCOPE_URL), {cache: 'reload'}
+    )));
+    await self.skipWaiting();
   })());
 });
 
@@ -62,7 +65,7 @@ self.addEventListener('fetch', event => {
 
   event.respondWith((async () => {
     const cache = await caches.open(CACHE_NAME);
-    const cached = await cache.match(event.request, {ignoreSearch: true});
+    const cached = await cache.match(event.request);
     // Return full cached files, including for offline PDF range requests.
     if (cached) return cached;
     if (event.request.mode === 'navigate') {

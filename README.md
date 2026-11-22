@@ -51,3 +51,11 @@ https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a
 Open any recipe and choose **Add to cart**. Add more recipes, then open **Shopping cart** to tick off ingredients. The cart shows one alphabetical list and combines matching ingredients with compatible units. Manage recipes to remove a dish. Your list and ticks are saved in the browser or installed app you use to shop and work offline once the cookbook is cached.
 
 For an existing GitHub Pages copy, overwrite the files with the contents of this package and commit the update. Open the published app online, then close all cookbook tabs and reopen it to activate the update.
+
+
+## Check the update
+
+Open the published GitHub Pages address while connected. Refresh once after the
+deployment finishes. **Version 4** at the bottom identifies the combined shopping
+list update. On an existing installation, reopen the cookbook if the previous
+version is still on screen. Use the same site address to keep your saved cart.
