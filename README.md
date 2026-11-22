@@ -56,6 +56,5 @@ For an existing GitHub Pages copy, overwrite the files with the contents of this
 ## Check the update
 
 Open the published GitHub Pages address while connected. Refresh once after the
-deployment finishes. **Version 4** at the bottom identifies the combined shopping
-list update. On an existing installation, reopen the cookbook if the previous
+deployment finishes. **Version 5** at the bottom identifies the update with recipe details above the buttons. On an existing installation, reopen the cookbook if the previous
 version is still on screen. Use the same site address to keep your saved cart.

@@ -91,7 +91,8 @@ function recipeBody(recipe) {
   body.setAttribute('aria-label', 'Recipe instructions');
   let activeList;
   let activeText;
-  for (const line of recipe.lines) {
+  for (const [index, line] of recipe.lines.entries()) {
+    if (recipe.facts.hide.includes(index)) continue;
     const bullet = line.match(/^•\s+(.+)/);
     const step = line.match(/^(\d{1,2})(?:[.)]\s+|(?<=^0\d)\s+)(.+)/);
     if (bullet || step) {
@@ -186,6 +187,24 @@ function drawCart() {
 
 saveShopping();
 
+function drawRecipeFacts(recipe) {
+  const list = element('dl', '', 'recipe-facts');
+  const {serves, prep, cook, difficulty} = recipe.facts;
+  const facts = [
+    [recipe.id === 'apple-blackberry-jam' ? 'Yield' : 'Servings', serves],
+    ['Prep time', prep],
+    ['Cook time', cook],
+    ['Difficulty', difficulty],
+  ];
+  for (const [label, value] of facts) {
+    const item = element('div');
+    const display = value.endsWith('*') ? 'About ' + value.slice(0, -1) : value;
+    item.append(element('dt', label), element('dd', display));
+    list.append(item);
+  }
+  return list;
+}
+
 function drawRecipe(recipe) {
   const title = element('h1', recipe.title);
   title.tabIndex = -1;
@@ -219,7 +238,7 @@ function drawRecipe(recipe) {
   });
   actions.append(add, original, download, print);
   detail.replaceChildren(link('All recipes', '#', 'back'), element('div', recipe.collection || recipe.category, 'tag'), title,
-    element('p', recipe.description, 'intro'), actions, feedback, recipeBody(recipe));
+    element('p', recipe.description, 'intro'), drawRecipeFacts(recipe), actions, feedback, recipeBody(recipe));
   return title;
 }
 

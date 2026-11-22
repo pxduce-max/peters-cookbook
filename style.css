@@ -16,3 +16,10 @@
 .shopping-item{display:flex;align-items:baseline;gap:.75rem;padding:.55rem .25rem;border-bottom:1px solid var(--line);cursor:pointer}
 .shopping-item input{width:1.15rem;height:1.15rem;flex:none;accent-color:var(--green)}
 .shopping-item input:checked+span{text-decoration:line-through;color:var(--muted)}
+
+.recipe-facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.65rem;margin:1.25rem 0;max-width:48rem}
+.recipe-facts>div{padding:.65rem .85rem;background:#fffdf7;border:1px solid var(--line);border-radius:.3rem}
+.recipe-facts dt{font-size:.875rem;color:var(--muted);font-weight:650}
+.recipe-facts dd{margin:.1rem 0 0;font-weight:650}
+@media(max-width:640px){.recipe-facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media print{.recipe-facts{grid-template-columns:repeat(4,minmax(0,1fr));break-inside:avoid}}
