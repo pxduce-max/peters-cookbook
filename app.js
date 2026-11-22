@@ -142,6 +142,24 @@ function drawCart() {
     return title;
   }
 
+  const checklist = element('div', '', 'shopping-checklist');
+  for (const item of totalIngredients(selected)) {
+    const label = element('label', '', 'shopping-item');
+    const checkbox = element('input');
+    checkbox.type = 'checkbox';
+    checkbox.checked = item.sources.every(([id, index, originalIndex]) => (shopping.checked[id]?.[index] ?? shopping.checked[id]?.[originalIndex]));
+    checkbox.addEventListener('change', () => {
+      for (const [id, index] of item.sources) {
+        (shopping.checked[id] ??= {})[index] = checkbox.checked;
+      }
+      saveShopping();
+    });
+    label.append(checkbox, element('span', shoppingLabel(item)));
+    checklist.append(label);
+  }
+  cart.append(checklist);
+  const management = element('details', '', 'shopping-recipe');
+  management.append(element('summary', 'Manage recipes (' + selected.length + ')'));
   for (const recipe of selected) {
     const section = element('section', '', 'shopping-recipe');
     const header = element('div', '', 'shopping-header');
@@ -160,20 +178,9 @@ function drawCart() {
     });
     header.append(name, remove);
     section.append(header);
-    for (const [index, ingredient] of recipe.shopping.entries()) {
-      const label = element('label', '', 'shopping-item');
-      const checkbox = element('input');
-      checkbox.type = 'checkbox';
-      checkbox.checked = Boolean(shopping.checked[recipe.id]?.[index]);
-      checkbox.addEventListener('change', () => {
-        (shopping.checked[recipe.id] ??= {})[index] = checkbox.checked;
-        saveShopping();
-      });
-      label.append(checkbox, element('span', ingredient));
-      section.append(label);
-    }
-    cart.append(section);
+    management.append(section);
   }
+  cart.append(management);
   return title;
 }
 

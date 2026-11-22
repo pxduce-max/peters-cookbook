@@ -1,7 +1,8 @@
-const CACHE_NAME = 'peters-cookbook-v2';
+const CACHE_NAME = 'peters-cookbook-v3';
 const PRECACHE_URLS = [
   "./",
   "./app.js",
+  "./shopping.js",
   "./icons/icon-180.png",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
