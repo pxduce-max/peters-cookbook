@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#18372b">
+<meta name="description" content="Peter’s personal cookbook, with 32 searchable recipes and the original recipe PDFs.">
+<title>Peter’s Cookbook</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Cookbook">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="style.css">
+<script defer src="recipes.js"></script>
+<script defer src="app.js"></script>
+<script defer src="install.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to recipes</a>
+<header class="masthead"><div class="wrap bar"><a href="#" class="brand">Peter’s Cookbook</a><nav aria-label="Cookbook"><a href="#pdfs">PDF collection</a> <a href="#cart" id="cart-link">Shopping cart</a></nav></div></header>
+<main id="main">
+<section id="browse">
+<div class="hero"><div class="wrap hero-inner"><p class="eyebrow">THE RECIPE COLLECTION</p><h1>Peter’s<br>Cookbook<span>.</span></h1><p>From Nordic fish soups to Korean slow-braised beef. Find a recipe by name or by what’s in the fridge.</p></div></div>
+<div class="wrap catalogue">
+<div class="catalogue-header"><h2>Browse recipes</h2><label class="search">Search recipes<input type="search" id="search" placeholder="Try salmon, udon or lentils"></label></div>
+<div id="filters" class="filters" aria-label="Recipe categories"></div>
+<p id="count" class="count" role="status"></p>
+<div id="grid" class="grid"></div>
+</div>
+</section>
+<section id="detail" class="wrap detail" hidden></section>
+<section id="cart" class="wrap detail" hidden></section>
+<section id="pdfs" class="wrap detail" hidden>
+<a class="back" href="#">All recipes</a>
+<h1>PDF collection</h1><p>Download any of the 23 original recipe PDFs.</p><ul id="pdf-list" class="pdf-list"></ul>
+</section>
+</main>
+<footer class="wrap footer"><a href="#">Peter’s Cookbook</a><span>32 recipes · 23 original PDFs</span>
+<span id="offline-status" role="status"></span>
+<button id="install-app" class="action" type="button" hidden>Install cookbook</button></footer>
+</body>
+</html>
