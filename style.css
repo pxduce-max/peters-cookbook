@@ -23,3 +23,5 @@
 .recipe-facts dd{margin:.1rem 0 0;font-weight:650}
 @media(max-width:640px){.recipe-facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media print{.recipe-facts{grid-template-columns:repeat(4,minmax(0,1fr));break-inside:avoid}}
+
+#detail h1[tabindex="-1"]:focus-visible{outline:none}
