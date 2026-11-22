@@ -101,6 +101,27 @@ function shoppingParts(line) {
   return line.split(/; (?=zest of)/i);
 }
 
+// Match known varieties so compound names such as peanut butter stay intact.
+const ingredientFamilies = [
+  [/^(waxy|floury|baby or new) potatoes$/, 'potatoes'],
+  [/^(chestnut|oyster|shiitake|chestnut or shiitake) mushrooms$/, 'mushrooms'],
+  [/^(red|spring) onions?$/, 'onions'],
+  [/^(red|yellow|green|red or yellow) peppers?$/, 'peppers'],
+  [/^(red|green|tinned green) lentils$/, 'lentils'],
+  [/^(beef|chicken|lower-salt chicken|fish|vegetable|fish or vegetable|vegetable or chicken) stock$/, 'stock'],
+  [/^(light|dark) soy sauce$/, 'soy sauce'],
+  [/^(unsalted|salted) butter$/, 'butter'],
+  [/^(whole|semi-skimmed|skimmed) milk$/, 'milk'],
+];
+
+function shoppingName(name) {
+  for (const [pattern, family] of ingredientFamilies) {
+    const match = pattern.exec(name);
+    if (match) return family + ' (' + match[1] + ')';
+  }
+  return name === 'onion' ? 'onions' : name;
+}
+
 function totalIngredients(selected) {
   const items = new Map();
   for (const recipe of selected) {
@@ -117,10 +138,11 @@ function totalIngredients(selected) {
       item.sources.push([recipe.id, parts.length === 1 ? index : index + ':' + partIndex, index]);
     }));
   }
-  return [...items.values()].sort((a, b) => a.name.localeCompare(b.name));
+  return [...items.values()].sort((a, b) => shoppingName(a.name).localeCompare(shoppingName(b.name), 'en-GB'));
 }
 
-function shoppingLabel({name, low, high, unit}) {
+function shoppingLabel({name: ingredient, low, high, unit}) {
+  const name = shoppingName(ingredient);
   if (low === null) return name;
   const format = value => Number(value.toFixed(3)).toString();
   const amount = value => unit === 'tsp' && value >= 3

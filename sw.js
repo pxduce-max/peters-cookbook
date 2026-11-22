@@ -1,13 +1,13 @@
-const CACHE_NAME = 'peters-cookbook-v6';
+const CACHE_NAME = 'peters-cookbook-v7';
 const PRECACHE_URLS = [
   "./",
-  "./app.js?v=6",
-  "./shopping.js?v=6",
+  "./app.js?v=7",
+  "./shopping.js?v=7",
   "./icons/icon-180.png",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
   "./index.html",
-  "./install.js?v=6",
+  "./install.js?v=7",
   "./manifest.webmanifest",
   "./pdfs/Creamy_Peanut_Udon_with_Sticky_Tempeh.pdf",
   "./pdfs/Creamy_Swedish_Saffron_Fish_Soup.pdf",
@@ -32,8 +32,8 @@ const PRECACHE_URLS = [
   "./pdfs/soothing_chicken_pearl_barley_soup_refined.pdf",
   "./pdfs/spiced_cauliflower_lentils_tahini_yoghurt_air_fryer.pdf",
   "./pdfs/wild_rice_mushroom_soup_refined.pdf",
-  "./recipes.js?v=6",
-  "./style.css?v=6"
+  "./recipes.js?v=7",
+  "./style.css?v=7"
 ];
 const SCOPE_URL = new URL('./', self.location.href);
 

@@ -56,5 +56,5 @@ For an existing GitHub Pages copy, overwrite the files with the contents of this
 ## Check the update
 
 Open the published GitHub Pages address while connected. Refresh once after the
-deployment finishes. **Version 6** at the bottom identifies the update that removes the outline around recipe titles. On an existing installation, reopen the cookbook if the previous
+deployment finishes. **Version 7** at the bottom identifies the update that lists ingredient varieties under their main name. On an existing installation, reopen the cookbook if the previous
 version is still on screen. Use the same site address to keep your saved cart.
